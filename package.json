@@ -1,0 +1,10 @@
+{
+    "type": "module",
+    "dependencies": {
+        "js-yaml": "^4.1.0",
+        "minimist": "^1.2.8",
+        "pg": "^8.11.3",
+        "read-excel-file": "^5.7.1",
+        "write-excel-file": "^1.4.27"
+    }
+}

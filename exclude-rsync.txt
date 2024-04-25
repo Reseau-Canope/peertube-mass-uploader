@@ -1,0 +1,7 @@
+.gitignore
+.git
+.gitlab-ci.yml
+exclude-rsync.txt
+package.json
+package-lock.json
+README.md

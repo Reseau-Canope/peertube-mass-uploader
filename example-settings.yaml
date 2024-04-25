@@ -1,0 +1,79 @@
+default:
+  misc:
+    baseurl: http://127.0.0.1:9001/
+    uploadPauseMs: 1000
+
+  user:
+    name: root
+    pwd: test
+
+  db:
+    host: 127.0.0.1
+    port: 5432
+    database: peertube_dev
+    user: postgres
+    password: postgres
+
+  paths:
+    todo: /var/www/cdn/medias/
+    wip: /var/www/cdn/medias/wip/
+    failed: /var/www/cdn/medias/failed/
+    done: /var/www/cdn/medias/done/
+    doubles: /var/www/cdn/medias/doubles/
+
+  files:
+    identifierRegex: ^(.*).mp4$
+    posters:
+      - $1.jpg
+      - $1.jpeg
+      - $1.webp
+      - $1.png
+    captions:
+      - $1.vtt
+      - $1.srt
+
+  data:
+    file: /var/www/cdn/medias/videos-data.xlsx
+    identifierValue: $1
+    dbCheck: $1.mp4
+
+    in:
+      - identifier
+      - title
+      - description
+      - privacy
+      - channel
+      - playlists
+      - category
+      - language
+      - tags
+      - publicationDate
+      - peertubeUrl
+      - peertubeId
+      - uploadDate
+
+    out:
+      - peertubeUrl
+      - peertubeId
+      - uploadDate
+
+    uploadDateFormat: en-US
+
+    languages:
+      en: English
+      fr: French
+      it: Italian
+
+    privacies:
+      - Public
+      - Unlisted
+      - Private
+      - Internal
+      - Password protected
+
+  logs:
+    debug: false
+    info: true
+    warning: true
+    error: true
+    fatal: true
