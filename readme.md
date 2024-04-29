@@ -4,7 +4,7 @@ Peertube Mass Uploader (PMU) is a Node.js script allowing bulk upload of videos 
 # How does it work?
 PMU scans a folder for mp4 files. Based on the name of the first mp4 file found, it retrieves its associated files (poster, subtitle) and its data in the XLSX file. It also uses this file name to check if the video is indeed absent from Peertube. If so, it uploads the video to Peertube with all the retrieved data and, if desired, sends Peertube information about the video back to the XLSX. Then it moves on to the next mp4 file.
 
-# Prerequisites
+# Requirements
 - Node.js (v20.11.1)
 - npm (v9)
 - Required modules installed using:
@@ -235,7 +235,7 @@ node upload.js --limit=10 --env=prod | tee -a logs/uploadProd.log
 - Licenses are not handled.
 - Uploading a video can sometimes fail with errors like "write EPIPE" or "write ECONNRESET". Most of the time, this is related to a disk space issue or an overburdened CPU. Typically, simply restarting the tool later, once these resources are available again, will ensure that the same videos are successfully uploaded.
 
-# Improvement Suggestions
+# Suggested improvement
 - All fields are mandatory in the XLSX file, while some could have default values (e.g., channel or privacy), extracted from the filename (e.g., title), returned by a function (e.g., 'now' for publicationDate), or simply ignored.
 - Other data file formats should be allowed in addition to XLSX, such as CSV or JSON.
 - The tool retrieves all data from the XLSX as strings, but it should also be able to handle IDs.
