@@ -90,7 +90,7 @@ const uploadFile = async (filename) => {
                             if (data.playlists) {
                                 await video.setPlaylists(Utility.splitTrim(data.playlists, ";"));
                             }
-                            await video.upload();
+                            // await video.upload();
 
                         } else {
                             Log.error(`Couldn't find channel "${data.channel}"`);

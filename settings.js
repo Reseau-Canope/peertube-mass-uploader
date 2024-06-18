@@ -4,17 +4,25 @@ import minimist from "minimist";
 
 import Utility from "./utilities/general.utility.js";
 
-const rawSettings = yaml.load(fs.readFileSync("settings.yaml", "utf8"));
 const args = minimist(process.argv.slice(2));
+
+//Is settings file defined?
+if (!args.settings) {
+    throw new Error(`[FATAL] Settings file is not defined. Use --settings= to define settings file path.`);
+}
+if (!fs.existsSync(args.settings)) {
+    throw new Error(`[FATAL] Couldn't load setting file at "${args.settings}".`);
+}
+
+const rawSettings = yaml.load(fs.readFileSync(args.settings, "utf8"));
 const defaultSettings = {
     misc: {
         uploadPauseMs: 0
     }
 };
-let settings = rawSettings.default;
 
-//Default values.
-settings = Utility.recursiveMerge(defaultSettings, settings);
+// Default values.
+let settings = Utility.recursiveMerge(defaultSettings, rawSettings.default);
 
 //--env arg.
 if (args.env) {
@@ -22,7 +30,7 @@ if (args.env) {
         settings = Utility.recursiveMerge(settings, rawSettings[args.env]);
     } else {
         //Couldn't find env.
-        throw new Error(`Couldn't find settings for --env=${args.env}, known envs are: ${Object.keys(rawSettings)}`);
+        throw new Error(`[FATAL] Couldn't find settings for --env=${args.env}, known envs are: ${Object.keys(rawSettings)}`);
     }
 }
 //--limit arg.

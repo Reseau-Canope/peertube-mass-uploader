@@ -12,8 +12,8 @@ PMU parcourt un dossier à la recherche de fichiers mp4. En se basant sur le nom
 npm install
 ```
 La configuration se fait via deux fichiers :
-- Un [fichier **.xlsx**](#fichier-xlsx) qui contient les métadonnées des vidéos (titre, description, chaîne, etc.) et où peuvent être ensuite injectées l'url et les ids de chaque vidéo après son upload.
-- Un [fichier **settings.yaml**](#fichier-settingsyaml) qui définit les paramètres d'utilisation du script.
+- Un [fichier de paramétrage **.yaml**](#fichier-settingsyaml) qui définit les paramètres d'utilisation du script. Le chemin vers ce fichier doit être renseigné au [lancement du script](#lancement-du-script). Dans ce doc nous utiliserons *settings.yaml* mais il peut prendre n'importe quel nom.
+- Un [fichier de données **.xlsx**](#fichier-xlsx) qui contient les informations des vidéos (titre, description, chaîne, etc.) et où peuvent être ensuite injectées l'url et les ids de chaque vidéo après son upload. Le chemin vers ce fichier doit être renseigné dans [`data:file:`](#datafile) du fichier de paramétrage.
 
 Quelques arguments peuvent aussi être définis au [lancement du script](#lancement-du-script).
 
@@ -215,9 +215,9 @@ logs:
 # Lancement du script
 Une fois la configuration faite, le script peut être lancé sur l'environnement par défaut avec :
 ```
-node upload.js | tee -a logs/upload.log
+node upload.js --settings=../settings.yaml | tee -a logs/upload.log
 ```
-La partie `node upload.js` lance le script tandis que la partie optionnelle `| tee -a logs/upload.log` ajoute (flag -a) les informations affichées dans la console au fichier *logs/upload.txt*.
+La partie `node upload.js` lance le script en utilisant les paramètres du fichier *settings.yaml* situé dans le dossier parent, tandis que la partie optionnelle `| tee -a logs/upload.log` ajoute (flag -a) les informations affichées dans la console au fichier *logs/upload.txt*.
 > ❗❗ **ATTENTION** Veiller à ce que le fichier XLSX ne soit pas ouvert avant l'upload car cela le rend inaccessible en écriture, les informations récupérées depuis Peertube (url, ids...) ne pourront donc pas y être enregistrées et seront perdues.
 
 ## Arguments optionnels
@@ -237,6 +237,6 @@ node upload.js --limit=10 --env=prod | tee -a logs/uploadProd.log
 
 # Pistes d'amélioration
 - Tous les champs sont obligatoires dans le fichier XLSX alors que certains pourraient avoir une valeur par défaut (par ex. channel ou privacy), extraite du nom de fichier (par ex. titre), retournée par une fonction (par ex. 'now' pour publicationDate) ou simplement ignorée.
-- D'autres formats du fichier de donénes devraient être autorisés en plus du XLSX, par exemple CSV ou JSON.
+- D'autres formats du fichier de données devraient être autorisés en plus du XLSX, par exemple CSV ou JSON.
 - L'outil récupère toutes les données depuis le XLSX à partir de chaînes, mais on devrait pouvoir aussi traiter des ids.
 - Ajouter des tests unitaires et fonctionnels.

@@ -12,8 +12,8 @@ PMU scans a folder for mp4 files. Based on the name of the first mp4 file found,
 npm install
 ```
 Configuration is done via two files:
-- An [**.xlsx file**](#xlsx-file) containing video metadata (title, description, channel, etc.) where the URL and IDs of each video can be injected after upload.
-- A [**settings.yaml file**](#settings-yaml-file) defining script usage parameters.
+- A [**.yaml** settings file](#settings-yaml-file) defining script usage parameters. Its path must be set in [script launch](#script-launch) parameters. We'll use *settings.yaml* in the present manual but it may have any name.
+- An [**.xlsx** data file](#xlsx-file) containing video informations (title, description, channel, etc.) where the URL and IDs of each video can be injected after upload. This file's path must be defined in [`data:file:`](#datafile) part of settings file.
 
 Additionally, some arguments can be defined at [script launch](#script-launch).
 
@@ -215,9 +215,9 @@ logs:
 # Script launch
 Once configuration is done, the script can be launched on the default environment with:
 ```
-node upload.js | tee -a logs/upload.log
+node upload.js --settings=../settings.yaml | tee -a logs/upload.log
 ```
-The `node upload.js` part runs the script, and the optional part `| tee -a logs/upload.log` adds (flag -a) the information displayed in the console to the *logs/upload.txt* file.
+The `node upload.js` part runs the script with parameters set in *settings.yaml* file located in parent folder, and the optional part `| tee -a logs/upload.log` adds (flag -a) the information displayed in the console to the *logs/upload.txt* file.
 > ❗❗ **ATTENTION** Ensure that the XLSX file is not open before upload as it makes it inaccessible for writing; therefore, the information retrieved from Peertube (URLs, IDs, etc.) cannot be saved there and will be lost.
 
 ## Optional arguments

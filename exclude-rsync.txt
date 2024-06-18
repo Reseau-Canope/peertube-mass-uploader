@@ -4,4 +4,5 @@
 exclude-rsync.txt
 package.json
 package-lock.json
-README.md
+readme.md
+readme-fr.md
