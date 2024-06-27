@@ -12,7 +12,7 @@ PMU scans a folder for mp4 files. Based on the name of the first mp4 file found,
 npm install
 ```
 Configuration is done via two files:
-- A [**.yaml** settings file](#settings-yaml-file) defining script usage parameters. Its path must be set in [script launch](#script-launch) parameters. We'll use *settings.yaml* in the present manual but it may have any name.
+- A [**.yaml** settings file](#settings-yaml-file) defining script usage parameters. Its path must be set in [script launch](#script-launch) parameters. We'll use *settings.yaml* in the present manual but it may have any name. An *example-settings.yaml* file is given as an example.
 - An [**.xlsx** data file](#xlsx-file) containing video informations (title, description, channel, etc.) where the URL and IDs of each video can be injected after upload. This file's path must be defined in [`data:file:`](#datafile) part of settings file.
 
 Additionally, some arguments can be defined at [script launch](#script-launch).
@@ -227,7 +227,7 @@ The `node upload.js` part runs the script with parameters set in *settings.yaml*
 
 For example, to process only the first **10** files in the **prod** environment:
 ```
-node upload.js --limit=10 --env=prod | tee -a logs/uploadProd.log
+node upload.js --settings=../settings.yaml --limit=10 --env=prod | tee -a logs/uploadProd.log
 ```
 
 # Known issues

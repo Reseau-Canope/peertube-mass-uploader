@@ -12,7 +12,7 @@ PMU parcourt un dossier à la recherche de fichiers mp4. En se basant sur le nom
 npm install
 ```
 La configuration se fait via deux fichiers :
-- Un [fichier de paramétrage **.yaml**](#fichier-settingsyaml) qui définit les paramètres d'utilisation du script. Le chemin vers ce fichier doit être renseigné au [lancement du script](#lancement-du-script). Dans ce doc nous utiliserons *settings.yaml* mais il peut prendre n'importe quel nom.
+- Un [fichier de paramétrage **.yaml**](#fichier-settingsyaml) qui définit les paramètres d'utilisation du script. Le chemin vers ce fichier doit être renseigné au [lancement du script](#lancement-du-script). Dans ce doc nous utiliserons *settings.yaml* mais il peut prendre n'importe quel nom. Un fichier *example-settings.yaml* est donné à titre d'exemple.
 - Un [fichier de données **.xlsx**](#fichier-xlsx) qui contient les informations des vidéos (titre, description, chaîne, etc.) et où peuvent être ensuite injectées l'url et les ids de chaque vidéo après son upload. Le chemin vers ce fichier doit être renseigné dans [`data:file:`](#datafile) du fichier de paramétrage.
 
 Quelques arguments peuvent aussi être définis au [lancement du script](#lancement-du-script).
@@ -227,7 +227,7 @@ La partie `node upload.js` lance le script en utilisant les paramètres du fichi
 
 Par exemple, pour ne traiter que les **10** premiers fichiers en environnement **prod** :
 ```
-node upload.js --limit=10 --env=prod | tee -a logs/uploadProd.log
+node upload.js --settings=../settings.yaml --limit=10 --env=prod | tee -a logs/uploadProd.log
 ```
 
 # Problèmes connus
