@@ -17,6 +17,8 @@ La configuration se fait via deux fichiers :
 
 Quelques arguments peuvent aussi être définis au [lancement du script](#lancement-du-script).
 
+> ❗❗ **ATTENTION** Ces deux fichiers ne doivent pas faire partie du dépôt Git de PMU, puisqu'ils sont propres à chaque utilisateur. Il est toutefois possible de les versionner dans un autre projet Git utilisant PMU en tant que sous-module Git, de la façon indiquée en toute fin de ce document.
+
 # Fichier .xlsx
 Ce fichier contient les données de chaque vidéo, comme son titre ou sa description, à raison d'une vidéo par ligne et une donnée par colonne.
 L'ordre de ces colonnes est libre, mais il faudra l'indiquer dans [`data:in:`](#datain) de [settings.yaml](#fichier-settingsyaml).
@@ -160,7 +162,6 @@ Colonne contenant la date de publication de la vidéo, au format "Y-m-d" (par ex
 
 Il existe aussi des mots-clés optionnels permettant de définir les colonnes accueillant des valeurs retournées par l'outil. Voir [`data:out:`](#dataout) ci-dessous pour plus d'informations.
 
-
 ### `data:out:`
 Après chaque upload réussi, l'outil peut écrire dans le XLSX les infos récupérées depuis Peertube. Il suffit d'ajouter un des mots-clés ci-dessous dans cette section, ainsi que dans [`data:in:`](#datain) à l'emplacement correspondant à sa colonne dans le XLSX.
 
@@ -240,3 +241,22 @@ node upload.js --settings=../settings.yaml --limit=10 --env=prod | tee -a logs/u
 - D'autres formats du fichier de données devraient être autorisés en plus du XLSX, par exemple CSV ou JSON.
 - L'outil récupère toutes les données depuis le XLSX à partir de chaînes, mais on devrait pouvoir aussi traiter des ids.
 - Ajouter des tests unitaires et fonctionnels.
+
+# Bonus : intégrer PMU à un autre projet
+PMU a besoin pour fonctionner de fichiers qui sont propres à chaque utilisateur, donc absents de son dépôt Git. Il est possible de versionner ces fichiers en créant un autre projet Git, dans lequel PMU sera ajouté en tant que sous-module Git. Cela permet de travailler aussi bien sur ce projet que dans le PMU embarqué, les mettre à jour ou changer de branche, indépendamment l'un de l'autre.
+
+- Allez dans le dossier de votre projet, et ajoutez PMU en tant que sous-module Git
+```bash
+cd mon-projet
+git submodule add https://github.com/Reseau-Canope/peertube-mass-uploader.git
+```
+- Il faut ensuite installer les modules dont PMU a besoin :
+```bash
+cd peertube-mass-uploader
+npm install
+```
+- Il suffit maintenant de lancer le script en lui indiquant votre fichier de paramètres, par exemple :
+```bash
+cd ..
+node peertube-mass-uploader/upload.js --settings=settings.yaml
+```

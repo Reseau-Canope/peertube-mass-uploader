@@ -17,6 +17,8 @@ Configuration is done via two files:
 
 Additionally, some arguments can be defined at [script launch](#script-launch).
 
+> ❗❗ **ATTENTION** These two files must stay out of PMU's Git repository as they are user-specific. However, it is possible to version them in another Git project with PMU set as a Git submodule, as described at the end of this document.
+
 # XLSX file
 This file contains data for each video, such as its title or description, with one video per row and one data per column.
 The order of these columns is arbitrary but needs to be indicated in [`data:in:`](#datain) in [settings.yaml](#settings-yaml-file).
@@ -159,7 +161,6 @@ Column containing the video keyword(s), separated by a semicolon.
 Column containing the video publication date, in "Y-m-d" format (e.g., "2023-12-31") or just a year (in which case "-01-01" will be added).
 
 There are also optional keywords to define the columns hosting values returned by the tool. See [`data:out:`](#dataout) below for more information.
-
 
 ### `data:out:`
 After each successful upload, the tool can write in the XLSX informations retrieved from Peertube. Just add one of the keywords below in this section, as well as in [`data:in:`](#datain) in the corresponding column in the XLSX.
