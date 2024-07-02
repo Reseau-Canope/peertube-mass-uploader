@@ -241,3 +241,22 @@ node upload.js --settings=../settings.yaml --limit=10 --env=prod | tee -a logs/u
 - Other data file formats should be allowed in addition to XLSX, such as CSV or JSON.
 - The tool retrieves all data from the XLSX as strings, but it should also be able to handle IDs.
 - Add unit and functional tests.
+
+# Bonus: integrating PMU into another project
+PMU requires files that are specific to each user, and therefore absent from its Git repository. It is possible to version these files by creating another Git project, in which PMU will be added as a Git submodule. This allows you to work on both this project and the embedded PMU, update them or change branches, independently of each other.
+
+- Go to your project folder, and add PMU as a Git submodule
+```bash
+cd my-project
+git submodule add https://github.com/Reseau-Canope/peertube-mass-uploader.git
+```
+- Then install modules required by PMU:
+```bash
+cd peertube-mass-uploader
+npm install
+```
+- Now you just need to run the script, specifying your settings file, for example:
+```bash
+cd ..
+node peertube-mass-uploader/upload.js --settings=settings.yaml
+```
