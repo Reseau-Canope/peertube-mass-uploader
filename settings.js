@@ -1,3 +1,10 @@
+/**
+ * Get settings from yaml file and script arguments.
+ *
+ * @author Grégory Béal <gregory.beal@reseau-canope.fr>
+ * @license CECILL-2.1
+ */
+
 import fs from "fs";
 import yaml from "js-yaml";
 import minimist from "minimist";

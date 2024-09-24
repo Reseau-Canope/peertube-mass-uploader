@@ -1,4 +1,5 @@
 {
+    "license": "CECILL-2.1",
     "type": "module",
     "dependencies": {
         "js-yaml": "^4.1.0",

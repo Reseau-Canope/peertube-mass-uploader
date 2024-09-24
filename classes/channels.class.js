@@ -3,6 +3,7 @@
  *
  * @class
  * @author Grégory Béal <gregory.beal@reseau-canope.fr>
+ * @license CECILL-2.1
  */
 
 import Channel from "./channel.class.js";

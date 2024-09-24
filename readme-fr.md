@@ -1,6 +1,8 @@
 # C'est quoi ?
 Peertube Mass Uploader (PMU) est un script nodeJS permettant l'envoi en masse de vidéos dans Peertube à partir de fichiers mp4, posters (jpg, png, webp), sous-titres (srt, vtt) et d'un fichier de données au format XLSX. Les informations de chaque vidéo une fois dans Peertube peuvent ensuite être injectées dans ce fichier XLSX : son url, id, short uuid, uuid, et date d'upload.
 
+**PMU est sous licence [CeCILL 2.1](https://cecill.info/licences/Licence_CeCILL_V2.1-fr.html).**
+
 # Comment ça marche ?
 PMU parcourt un dossier à la recherche de fichiers mp4. En se basant sur le nom du premier fichier mp4 trouvé, il va récupérer ses fichiers annexes (poster, sous-titre) et ses informations dans le fichier XLSX. Il utilise aussi ce nom de fichier pour déterminer si la vidéo est bien absente de PeerTube. Le cas échéant, il envoie la vidéo dans PeerTube avec toutes les informations récupérées, et si besoin envoie dans le XLSX des informations de PeerTube concernant la vidéo. Puis il passe au fichier mp4 suivant.
 

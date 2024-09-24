@@ -3,6 +3,7 @@
  *
  * @class
  * @author Grégory Béal <gregory.beal@reseau-canope.fr>
+ * @license CECILL-2.1
  */
 
 import fs from "fs";

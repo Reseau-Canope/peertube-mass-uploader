@@ -1,3 +1,10 @@
+/**
+ * Peertube Mass Uploader. Check readme files for more.
+ *
+ * @author Grégory Béal <gregory.beal@reseau-canope.fr>
+ * @license CECILL-2.1
+ */
+
 import fs from "fs";
 import pg from "pg";
 
