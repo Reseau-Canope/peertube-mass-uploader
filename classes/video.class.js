@@ -11,6 +11,7 @@ import fs from 'fs';
 import Log from "./log.class.js";
 import PeertubeApi from "./peertube-api.class.js";
 import Categories from "./categories.class.js";
+import Licences from './licences.class.js';
 import Utility from "../utilities/general.utility.js";
 import Channels from "./channels.class.js";
 import Mediafiles from "./mediafiles.class.js";
@@ -41,6 +42,7 @@ export default class Video {
         this.setLanguage(data.language);
         this.setPrivacy(data.privacy);
         this.setCategory(data.category);
+        this.setLicence(data.licence)
         this.setTags(data.tags);
         this.setPublicationDate(data.publicationDate);
     }
@@ -130,6 +132,17 @@ export default class Video {
     }
 
     /**
+     * Sets Video's Peertube licence by its label.
+     * @param {string} licence Label
+     */
+    setLicence(licence) {
+        let licenceId = Licences.getByDisplayName(licence);
+        if (licenceId >= 0) {
+            this.licence = { id: licenceId, label: licence };
+        }
+    }
+
+    /**
      * Sets Video's tags.
      * @param {string} tags ";" separated tags.
      */
@@ -196,6 +209,9 @@ export default class Video {
             form.set("channelId", this.channel.id);
             if (this.category) {
                 form.set("category", this.category.id);
+            }
+            if (this.licence) {
+                form.set("licence", this.licence.id);
             }
             form.set("name", this.title);
             form.set("description", this.description);

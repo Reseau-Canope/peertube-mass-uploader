@@ -150,6 +150,9 @@ Column containing the playlist(s) of the channel where the video will be placed 
 `- privacy`<br>
 Column containing the video visibility. On the XLSX side, it must take one of the values indicated in [`data:privacies:`](#dataprivacies).
 
+`- licence`<br>
+Column containing the video licence based on values returned by the API [videos/licences](https://docs.joinpeertube.org/api-rest-reference.html#tag/Video/operation/getLicences).
+
 `- category`<br>
 Column containing the video category based on values returned by the API [videos/categories](https://docs.joinpeertube.org/api-rest-reference.html#tag/Video/operation/getCategories).
 

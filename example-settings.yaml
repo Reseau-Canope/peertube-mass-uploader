@@ -46,6 +46,7 @@ default:
       - playlists
       - category
       - language
+      - licence
       - tags
       - publicationDate
       - peertubeUrl

@@ -16,6 +16,7 @@ import Data from "./classes/data.class.js";
 import Log from "./classes/log.class.js";
 import Utility from "./utilities/general.utility.js";
 import Categories from "./classes/categories.class.js";
+import Licences from "./classes/licences.class.js";
 import Video from "./classes/video.class.js";
 import Channels from "./classes/channels.class.js";
 
@@ -140,6 +141,7 @@ if (filenames) {
             Log.debug(`${channel.name}: "${channel.displayName}"`);
         });
         await Categories.init();
+        await Licences.init();
 
         let totalTime = 0,
             filenameN = 0;
